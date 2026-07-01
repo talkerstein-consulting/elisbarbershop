@@ -541,3 +541,159 @@ ul { list-style: none; }
   .why-section, .style-section, .pricing-section { padding: 3rem 1rem; }
   .cta-text-block { padding: 2rem 1.5rem; }
 }
+
+/* ===== PAGE HERO (inner pages) ===== */
+.page-hero {
+  position: relative;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-3-qwqqakea7z0tvdpf90k9mgswxex5r4ql3hlyxbinfc.jpg') center/cover no-repeat;
+}
+.page-hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(42,54,99,0.8);
+}
+.page-hero .hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+/* ===== NAV ACTIVE STATE ===== */
+.main-nav a.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+
+/* ===== ABOUT PAGE ===== */
+.about-section {
+  background: var(--cream);
+  padding: 5rem 2rem;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text p {
+  color: var(--navy);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.about-text .section-title { margin-bottom: 1.5rem; }
+.about-cta { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+.about-img img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(42,54,99,0.2);
+}
+.values-section {
+  background: var(--navy);
+  padding: 5rem 2rem;
+}
+.values-section .section-title { color: var(--cream); margin-bottom: 2.5rem; }
+.values-section .feature-card {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+}
+.values-section .feature-card h3,
+.values-section .feature-card p { color: var(--white); }
+
+/* ===== GALLERY PAGE ===== */
+.gallery-page-section {
+  background: var(--cream);
+  padding: 5rem 2rem;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+.gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 40px rgba(42,54,99,0.2);
+}
+.gallery-cta {
+  text-align: center;
+  padding: 3rem 0 1rem;
+}
+.gallery-cta p { color: var(--navy); margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+/* ===== CONTACT PAGE ===== */
+.contact-section {
+  background: var(--cream);
+  padding: 5rem 2rem;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+.contact-info .section-title { margin-bottom: 1rem; }
+.contact-info > p { color: var(--navy); margin-bottom: 2rem; }
+.contact-details { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
+.contact-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.contact-detail-icon { font-size: 1.5rem; }
+.contact-detail-item h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--navy);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+.contact-detail-item a,
+.contact-detail-item p { color: var(--navy); font-size: 0.95rem; }
+.contact-detail-item a:hover { color: var(--navy-mid); text-decoration: underline; }
+.hours-list li { color: var(--navy); font-size: 0.95rem; line-height: 1.8; }
+.contact-social h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--navy);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.contact-map .section-title { margin-bottom: 1.5rem; }
+.map-placeholder { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(42,54,99,0.12); }
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== HEADER SCROLLED ===== */
+.site-header.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+/* ===== RESPONSIVE ADDITIONS ===== */
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .about-img img { height: 280px; }
+}
