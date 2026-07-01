@@ -1,41 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eli's Barbershop Toronto</title>
-  <meta name="description" content="Experience premium gentlemen's grooming services at Eli's Barbershop in Toronto, ON.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo-link">
-        <img src="https://elisbarbershop.com/wp-content/uploads/2024/11/eli-logo-white.png" alt="Eli Barbershop" class="logo-img">
-      </a>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </nav>
-      <a href="tel:+14162242877" class="nav-phone-btn" aria-label="Call Us">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
-      </a>
-      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
-    </div>
-    <div class="mobile-menu" id="mobile-menu">
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
-  </header>
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Eli's Barbershop Toronto" description="Experience premium gentlemen's grooming services at Eli's Barbershop in Toronto, ON.">
   <section class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -68,7 +34,7 @@
       <p class="cta-text">Book your appointment today and experience why so many in Toronto trust us for their grooming needs.</p>
       <div class="cta-buttons">
         <a href="tel:+14162242877" class="btn btn-primary">Call Us</a>
-        <a href="about.html" class="btn btn-outline">About Us</a>
+        <a href="/about" class="btn btn-outline">About Us</a>
       </div>
     </div>
   </section>
@@ -76,7 +42,7 @@
     <div class="container">
       <h2 class="section-title light">Find Your Style with Us</h2>
       <p>Not sure which haircut will suit you best? Whether you're after a fresh new look or want to stick to something classic, Eli's expertise and eye for detail make it easy to find a style that fits. Feel free to ask for suggestions or show us a photo.</p>
-      <a href="gallery.html" class="btn btn-primary">View Gallery</a>
+      <a href="/gallery" class="btn btn-primary">View Gallery</a>
     </div>
   </section>
   <section class="gallery-section">
@@ -84,7 +50,7 @@
       <div class="carousel-track" id="carouselTrack">
         <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-1-qwqqah7evuspmkci0or4dkq0s03yjk6fxctogst740.jpg" alt="Cut 1"></div>
         <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-2-qwqqai592otzy6b4v75qy2hhddzbr9a69hh5y2rsxs.jpg" alt="Cut 2"></div>
-        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-3-qwqqakea7z0tvdpf90k9mgswxex5r4ql3hlyxbinfc.jpg" alt="Cut 3"></div>
+        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-3-qwqqak0xgcwkle8ek7z0320ek5q26nhmxqs4wmp0lc.jpg" alt="Cut 3"></div>
         <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-4-qwqqakyrn6xux071eqdmnjrv5jlfecld9vfmdwnmf4.jpg" alt="Cut 4"></div>
         <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-5-qwqqamug0v0fk84b3r6vsjascbc5tqsty4qlcgku2o.jpg" alt="Cut 5"></div>
         <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-6-qwqqaoq4ej307g1kss04xitpj32w950ame1kb0i1q8.jpg" alt="Cut 6"></div>
@@ -124,51 +90,8 @@
       <div class="cta-text-block">
         <h2>Have Any Questions? Contact Us</h2>
         <p>Got questions about our services, pricing, or booking an appointment? We're here to help!</p>
-        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        <a href="/contact" class="btn btn-primary">Contact Us</a>
       </div>
     </div>
   </section>
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <img src="https://elisbarbershop.com/wp-content/uploads/2024/11/eli-logo-white.png" alt="Eli Barbershop" class="footer-logo">
-        <p>Experience premium gentlemen's grooming services at Eli's Barbershop in Toronto, ON.</p>
-        <div class="footer-social">
-          <a href="https://www.facebook.com/elisalonyorkdowns/" aria-label="Facebook" target="_blank" rel="noopener" class="social-btn">f</a>
-          <a href="https://www.instagram.com/explore/locations/707157206157190/elis-salon-barber-shop/" aria-label="Instagram" target="_blank" rel="noopener" class="social-btn">in</a>
-        </div>
-      </div>
-      <div class="footer-contact">
-        <div class="footer-contact-item">
-          <h4>Phone</h4><a href="tel:+14162242877">(+1) 416 224 2877</a>
-        </div>
-        <div class="footer-contact-item">
-          <h4>Address</h4><p>4128 Bathurst St, Toronto, ON M3H 3P4</p>
-        </div>
-      </div>
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-      </div>
-      <div class="footer-hours">
-        <h4>Hours of Operation</h4>
-        <ul>
-          <li>Sun: 8 AM to 5 PM</li>
-          <li>Mon - Thu: 8 AM to 7 PM</li>
-          <li>Fri: 8 AM to 5 PM</li>
-        </ul>
-        <p class="shomer">Shomer Shabbat</p>
-      </div>
-    </div>
-    <div class="footer-divider"></div>
-    <div class="footer-bottom">
-      <p>2026, All Rights Reserved. Designed with love by <a href="https://talkerstein.com/" target="_blank" rel="noopener">Talkerstein Consulting Group</a></p>
-    </div>
-  </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+</Layout>
