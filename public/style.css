@@ -641,7 +641,7 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-3-qwqqakea7z0tvdpf90k9mgswxex5r4ql3hlyxbinfc.jpg') center/cover no-repeat;
+  background: url('/carousel/cut-3.jpg') center/cover no-repeat;
 }
 .page-hero .hero-overlay {
   position: absolute;
