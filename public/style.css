@@ -422,6 +422,9 @@ ul { list-style: none; }
   border-color: var(--navy);
   color: var(--navy);
 }
+.pricing-card .btn-outline:hover {
+  color: var(--white);
+}
 .btn-block {
   display: flex;
   align-items: center;
@@ -469,9 +472,12 @@ ul { list-style: none; }
 }
 .cta-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   max-width: 1400px;
   margin: 0 auto;
+}
+.cta-img {
+  min-width: 0;
 }
 .cta-img img {
   width: 100%;
