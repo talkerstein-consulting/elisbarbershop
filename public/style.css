@@ -180,7 +180,7 @@ ul { list-style: none; }
 
 /* ===== WHY SECTION ===== */
 .why-section {
-  background: var(--cream);
+  background: var(--cream-muted);
   padding: 5rem 2rem;
 }
 .why-section .container { padding: 0; }
@@ -206,20 +206,22 @@ ul { list-style: none; }
   margin-bottom: 2.5rem;
 }
 .feature-card {
-  background: rgba(255,255,255,0.6);
-  border: 1px solid var(--cream-muted);
-  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(42,54,99,0.35);
+  border-radius: 0;
   padding: 2rem 1.5rem;
   text-align: center;
   transition: box-shadow 0.2s;
 }
 .feature-card:hover { box-shadow: 0 6px 24px rgba(42,54,99,0.12); }
 .feature-icon {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   margin: 0 auto 1.2rem;
+  color: var(--navy);
 }
 .feature-icon img { width: 100%; height: 100%; object-fit: contain; }
+.feature-icon svg { width: 100%; height: 100%; }
 .feature-card h3 {
   font-family: var(--font-heading);
   font-size: 1.4rem;
@@ -679,6 +681,12 @@ ul { list-style: none; }
 .values-section .feature-card {
   background: rgba(255,255,255,0.08);
   border-color: rgba(255,255,255,0.15);
+  border-radius: 6px;
+}
+.values-section .feature-icon {
+  width: 80px;
+  height: 80px;
+  color: var(--white);
 }
 .values-section .feature-card h3,
 .values-section .feature-card p { color: var(--white); }
