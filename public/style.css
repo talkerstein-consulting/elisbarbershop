@@ -51,6 +51,11 @@ ul { list-style: none; }
   width: 230px;
   height: auto;
 }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
 .main-nav ul {
   display: flex;
   gap: 2.5rem;
