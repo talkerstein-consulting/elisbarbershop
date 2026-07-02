@@ -615,6 +615,7 @@ ul { list-style: none; }
   .carousel-slide img { height: 320px; }
   .header-inner { min-height: 100px; }
   .logo-img { width: 170px; }
+  .nav-right { gap: 0.75rem; }
 }
 @media (max-width: 480px) {
   .header-inner { padding: 0.5rem 1rem; }
