@@ -668,8 +668,9 @@ ul { list-style: none; }
 .about-cta { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
 .about-img img {
   width: 100%;
-  height: 450px;
-  object-fit: cover;
+  height: auto;
+  max-height: 650px;
+  object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(42,54,99,0.2);
 }
@@ -861,5 +862,5 @@ ul { list-style: none; }
 }
 @media (max-width: 600px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
-  .about-img img { height: 280px; }
+  .about-img img { max-height: 400px; }
 }
