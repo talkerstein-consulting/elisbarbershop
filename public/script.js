@@ -95,6 +95,59 @@ if (track && prevBtn && nextBtn) {
   requestAnimationFrame(step);
 }
 
+// ===== Gallery Lightbox =====
+const galleryGrid = document.getElementById('galleryGrid');
+const lightbox = document.getElementById('lightbox');
+
+if (galleryGrid && lightbox) {
+  const items = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn2 = document.getElementById('lightboxPrev');
+  const nextBtn2 = document.getElementById('lightboxNext');
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    const item = items[currentIndex];
+    lightboxImg.src = item.dataset.full;
+    lightboxImg.alt = item.querySelector('img').alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function showRelative(direction) {
+    currentIndex = (currentIndex + direction + items.length) % items.length;
+    const item = items[currentIndex];
+    lightboxImg.src = item.dataset.full;
+    lightboxImg.alt = item.querySelector('img').alt;
+  }
+
+  items.forEach((item, index) => {
+    item.addEventListener('click', () => openLightbox(index));
+  });
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn2.addEventListener('click', () => showRelative(-1));
+  nextBtn2.addEventListener('click', () => showRelative(1));
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showRelative(-1);
+    if (e.key === 'ArrowRight') showRelative(1);
+  });
+}
+
 // ===== Scroll Animation (fade-in on scroll) =====
 const observerOptions = {
   threshold: 0.15,

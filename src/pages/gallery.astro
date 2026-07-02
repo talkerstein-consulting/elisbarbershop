@@ -13,13 +13,35 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <h2 class="section-title">Our Work</h2>
       <p class="section-intro">Browse a selection of cuts from Eli's Barbershop. Every client gets a personalized cut tailored to their style.</p>
-      <div class="gallery-grid">
-        <div class="gallery-item"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-1-qwqqah7evuspmkci0or4dkq0s03yjk6fxctogst740.jpg" alt="Eli Barbershop Cut 1"></div>
-        <div class="gallery-item"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-2-qwqqai592otzy6b4v75qy2hhddzbr9a69hh5y2rsxs.jpg" alt="Eli Barbershop Cut 2"></div>
-        <div class="gallery-item"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-3-qwqqak0xgcwkle8ek7z0320ek5q26nhmxqs4wmp0lc.jpg" alt="Eli Barbershop Cut 3"></div>
-        <div class="gallery-item"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-4-qwqqakyrn6xux071eqdmnjrv5jlfecld9vfmdwnmf4.jpg" alt="Eli Barbershop Cut 4"></div>
-        <div class="gallery-item"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-5-qwqqamug0v0fk84b3r6vsjascbc5tqsty4qlcgku2o.jpg" alt="Eli Barbershop Cut 5"></div>
-        <div class="gallery-item"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-6-qwqqaoq4ej307g1kss04xitpj32w950ame1kb0i1q8.jpg" alt="Eli Barbershop Cut 6"></div>
+      <div class="gallery-grid" id="galleryGrid">
+        {[
+          '/gallery/4fb622dc-278d-41ea-a8a3-8249085b6ed2.jpg',
+          '/gallery/2018-01-11.jpg',
+          '/gallery/2022-05-16.jpg',
+          '/gallery/20240214_175751.jpg',
+          '/gallery/b0a3f5a8-97d9-4f44-8f10-f64260a350f4.jpg',
+          '/gallery/b9391231-9c2f-4c8c-9c37-1879eb64fd91.jpg',
+          '/gallery/D3C6117F-D076-4C7D-98C2-9A6E306F8D31.jpeg',
+          '/gallery/IMG-20180723-WA0038.jpeg',
+          '/gallery/elibarbershop-toronto-canada.jpg',
+          '/gallery/elibarbershop-toronto-canada-2.jpg',
+          '/gallery/elisbarbershop-1.jpg',
+          '/gallery/unnamed.jpg',
+          '/gallery/unnamed-2.jpg',
+          '/gallery/unnamed-3.jpg',
+        ].map((src, i) => (
+          <button type="button" class="gallery-item" data-full={src} data-index={i} aria-label={`Open photo ${i + 1} of Eli's Barbershop`}>
+            <img src={src} alt={`Eli's Barbershop Cut ${i + 1}`} loading="lazy">
+            <span class="gallery-item-overlay" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10" cy="10" r="6"></circle>
+                <line x1="21" y1="21" x2="14.65" y2="14.65"></line>
+                <line x1="10" y1="7" x2="10" y2="13"></line>
+                <line x1="7" y1="10" x2="13" y2="10"></line>
+              </svg>
+            </span>
+          </button>
+        ))}
       </div>
       <div class="gallery-cta">
         <p>Ready for your next look? Book your appointment today.</p>
@@ -27,4 +49,10 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </section>
+  <div class="lightbox" id="lightbox">
+    <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button type="button" class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous photo">&#10094;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button type="button" class="lightbox-nav next" id="lightboxNext" aria-label="Next photo">&#10095;</button>
+  </div>
 </Layout>
