@@ -480,7 +480,7 @@ ul { list-style: none; }
 .cta-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 .cta-img {
@@ -488,7 +488,7 @@ ul { list-style: none; }
 }
 .cta-img img {
   width: 100%;
-  height: 400px;
+  height: 520px;
   object-fit: cover;
   filter: brightness(0.65);
 }
