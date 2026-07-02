@@ -280,7 +280,7 @@ ul { list-style: none; }
 .carousel-container {
   position: relative;
   overflow: hidden;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 3rem;
 }
@@ -292,7 +292,7 @@ ul { list-style: none; }
 .carousel-slide {
   min-width: 33.333%;
   flex-shrink: 0;
-  padding: 0 0.5rem;
+  padding: 0;
 }
 .carousel-slide img {
   width: 100%;
