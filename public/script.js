@@ -95,6 +95,21 @@ if (track && prevBtn && nextBtn) {
   requestAnimationFrame(step);
 }
 
+// ===== Page Hero Background Slideshow =====
+const heroSlideshow = document.querySelector('.hero-slideshow');
+if (heroSlideshow) {
+  const heroSlides = heroSlideshow.querySelectorAll('.hero-slide');
+  let heroSlideIndex = 0;
+  heroSlides[0].classList.add('active');
+  if (heroSlides.length > 1) {
+    setInterval(() => {
+      heroSlides[heroSlideIndex].classList.remove('active');
+      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+      heroSlides[heroSlideIndex].classList.add('active');
+    }, 5000);
+  }
+}
+
 // ===== Gallery Lightbox =====
 const galleryGrid = document.getElementById('galleryGrid');
 const lightbox = document.getElementById('lightbox');
