@@ -1,97 +1,25 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Marquee from "../components/Marquee.astro";
+import About from "../components/About.astro";
+import WhyChoose from "../components/WhyChoose.astro";
+import Gallery from "../components/Gallery.astro";
+import Pricing from "../components/Pricing.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import Lightbox from "../components/Lightbox.astro";
 ---
-<Layout title="Eli's Barbershop Toronto" description="Experience premium gentlemen's grooming services at Eli's Barbershop in Toronto, ON.">
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Welcome to Eli's Barbershop</h1>
-      <h2 class="hero-sub">Gents Salon in Toronto</h2>
-      <div class="hero-divider"><span></span><span class="scissors">✂</span><span></span></div>
-    </div>
-  </section>
-  <section class="why-section">
-    <div class="container">
-      <h2 class="section-title">Why Choose Eli's Barbershop?</h2>
-      <p class="section-intro">At Eli's Barbershop, we're more than just a place to get a haircut. We take pride in delivering high-quality service that combines experience, attention to detail, and a welcoming atmosphere. Here's what makes us different:</p>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://elisbarbershop.com/wp-content/uploads/2024/11/Icon-3.png.webp" alt="Experienced Barbering"></div>
-          <h3>Experienced Barbering</h3>
-          <p>With years of experience, owner Eli Chanimov knows the art of a great haircut, tailored to each client's style and preferences.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://elisbarbershop.com/wp-content/uploads/2024/11/Icon-2.png.webp" alt="Quality Cuts"></div>
-          <h3>Quality Cuts, Simple Pricing</h3>
-          <p>No surprises here our straightforward pricing and dedication to quality mean you always get the best.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><img src="https://elisbarbershop.com/wp-content/uploads/2024/11/Icon-4.png.webp" alt="Relaxed Environment"></div>
-          <h3>Relaxed, Friendly Environment</h3>
-          <p>We believe a good haircut starts with comfort. Step in, relax, and enjoy a space where everyone is welcome.</p>
-        </div>
-      </div>
-      <p class="cta-text">Book your appointment today and experience why so many in Toronto trust us for their grooming needs.</p>
-      <div class="cta-buttons">
-        <a href="tel:+14162242877" class="btn btn-primary">Call Us</a>
-        <a href="/about" class="btn btn-outline">About Us</a>
-      </div>
-    </div>
-  </section>
-  <section class="style-section">
-    <div class="container">
-      <h2 class="section-title light">Find Your Style with Us</h2>
-      <p>Not sure which haircut will suit you best? Whether you're after a fresh new look or want to stick to something classic, Eli's expertise and eye for detail make it easy to find a style that fits. Feel free to ask for suggestions or show us a photo.</p>
-      <a href="/gallery" class="btn btn-primary">View Gallery</a>
-    </div>
-  </section>
-  <section class="gallery-section">
-    <div class="carousel-container">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-1-qwqqah7evuspmkci0or4dkq0s03yjk6fxctogst740.jpg" alt="Cut 1"></div>
-        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-2-qwqqai592otzy6b4v75qy2hhddzbr9a69hh5y2rsxs.jpg" alt="Cut 2"></div>
-        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-3-qwqqak0xgcwkle8ek7z0320ek5q26nhmxqs4wmp0lc.jpg" alt="Cut 3"></div>
-        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-4-qwqqakyrn6xux071eqdmnjrv5jlfecld9vfmdwnmf4.jpg" alt="Cut 4"></div>
-        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-5-qwqqamug0v0fk84b3r6vsjascbc5tqsty4qlcgku2o.jpg" alt="Cut 5"></div>
-        <div class="carousel-slide"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-6-qwqqaoq4ej307g1kss04xitpj32w950ame1kb0i1q8.jpg" alt="Cut 6"></div>
-      </div>
-      <button class="carousel-btn prev" id="carouselPrev">&#10094;</button>
-      <button class="carousel-btn next" id="carouselNext">&#10095;</button>
-    </div>
-  </section>
-  <section class="pricing-section">
-    <div class="container">
-      <h2 class="section-title">Our Pricing</h2>
-      <p class="pricing-note">Prices are inclusive of taxes.</p>
-      <div class="pricing-grid">
-        <div class="pricing-card pricing-featured">
-          <div class="pricing-bg" style="background-image:url('https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-2-qwqqai592otzy6b4v75qy2hhddzbr9a69hh5y2rsxs.jpg')"></div>
-          <div class="pricing-card-inner">
-            <h3>Men's Haircut</h3>
-            <div class="price">$25</div>
-            <p>Standard price for gents haircut</p>
-            <a href="tel:+14162242877" class="btn btn-primary">Call Us</a>
-          </div>
-        </div>
-        <div class="pricing-card">
-          <div class="pricing-card-inner">
-            <h3>Beard Trim</h3>
-            <div class="price">$10</div>
-            <p>Standard price for beard trim or shave</p>
-            <a href="tel:+14162242877" class="btn btn-outline">Call US</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="cta-section">
-    <div class="cta-inner">
-      <div class="cta-img"><img src="https://elisbarbershop.com/wp-content/uploads/elementor/thumbs/elisbarbershop-4-qwqqakyrn6xux071eqdmnjrv5jlfecld9vfmdwnmf4.jpg" alt="Eli at work"></div>
-      <div class="cta-text-block">
-        <h2>Have Any Questions? Contact Us</h2>
-        <p>Got questions about our services, pricing, or booking an appointment? We're here to help!</p>
-        <a href="/contact" class="btn btn-primary">Contact Us</a>
-      </div>
-    </div>
-  </section>
-</Layout>
+<BaseLayout>
+  <Nav />
+  <Hero />
+  <Marquee />
+  <About />
+  <WhyChoose />
+  <Gallery />
+  <Pricing />
+  <Contact />
+  <Footer />
+  <Lightbox />
+</BaseLayout>

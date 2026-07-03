@@ -1,3 +1,6 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-export default defineConfig({});
+// https://astro.build/config
+export default defineConfig({
+  // If deploying to a subpath, set `site` and `base` here.
+});
