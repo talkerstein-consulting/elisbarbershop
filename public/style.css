@@ -753,6 +753,74 @@ ul { list-style: none; }
 }
 .gallery-cta p { color: var(--navy); margin-bottom: 1.5rem; font-size: 1.1rem; }
 
+/* ===== SERVICES SECTION (gallery page) ===== */
+.services-section {
+  background: var(--cream);
+  padding: 5rem 2rem;
+}
+.services-header {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+.services-header-left .section-title { margin-bottom: 2rem; }
+.services-phone-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 2px;
+}
+.services-header-right p {
+  color: var(--navy);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 760px;
+  margin-left: auto;
+}
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+}
+.service-card img {
+  width: 92px;
+  height: 92px;
+  object-fit: cover;
+}
+.service-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.service-card-navy { background: var(--navy); }
+.service-card-navy h3 { color: var(--white); }
+.service-card-tan { background: var(--gold); }
+.service-card-tan h3 { color: var(--white); }
+.service-card-outline {
+  background: var(--cream);
+  border: 1px solid var(--navy);
+}
+.service-card-outline h3 { color: var(--navy); }
+@media (max-width: 900px) {
+  .services-header { grid-template-columns: 1fr; gap: 1.5rem; }
+  .services-grid { max-width: none; margin-left: 0; }
+}
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+
 /* ===== GALLERY LIGHTBOX ===== */
 .lightbox {
   position: fixed;
