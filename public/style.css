@@ -938,6 +938,11 @@ ul { list-style: none; }
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 }
+.contact-social .social-btn {
+  background: var(--navy);
+  color: var(--white);
+}
+.contact-social .social-btn:hover { background: var(--navy-mid); }
 .contact-map .section-title { margin-bottom: 1.5rem; }
 .map-placeholder { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(42,54,99,0.12); }
 
