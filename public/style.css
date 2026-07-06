@@ -718,6 +718,7 @@ ul { list-style: none; }
   height: 80px;
   color: var(--white);
 }
+.values-section .feature-icon img { filter: invert(1); }
 .values-section .feature-card h3,
 .values-section .feature-card p { color: var(--white); }
 
