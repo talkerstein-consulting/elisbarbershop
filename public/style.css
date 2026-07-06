@@ -407,9 +407,8 @@ ul { list-style: none; }
   width: 56px;
   height: 56px;
   margin-bottom: 1.5rem;
-  color: var(--white);
+  object-fit: contain;
 }
-.pricing-icon-dark { color: var(--navy); }
 .pricing-card h3 {
   font-family: var(--font-heading);
   font-size: 1.6rem;
