@@ -723,7 +723,7 @@ ul { list-style: none; }
 
 /* ===== GALLERY PAGE ===== */
 .gallery-page-section {
-  background: var(--cream-muted);
+  background: var(--navy);
   padding: 5rem 2rem;
 }
 .gallery-grid {
@@ -772,7 +772,13 @@ ul { list-style: none; }
   text-align: center;
   padding: 3rem 0 1rem;
 }
-.gallery-cta p { color: var(--navy); margin-bottom: 1.5rem; font-size: 1.1rem; }
+.gallery-cta p { color: var(--cream); margin-bottom: 1.5rem; font-size: 1.1rem; }
+.gallery-cta .btn-primary {
+  background: var(--cream);
+  color: var(--navy);
+  border-color: var(--cream);
+}
+.gallery-cta .btn-primary:hover { background: var(--white); border-color: var(--white); }
 
 /* ===== SERVICES SECTION (gallery page) ===== */
 .services-section {
