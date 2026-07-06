@@ -482,7 +482,7 @@ ul { list-style: none; }
 /* ===== CTA SECTION ===== */
 .cta-section {
   background: var(--navy);
-  padding: 0;
+  padding: 5rem 0 0;
 }
 .cta-inner {
   display: grid;
