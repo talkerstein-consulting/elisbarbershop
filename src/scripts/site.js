@@ -42,7 +42,7 @@ import Lenis from "lenis";
     });
     return frag;
   }
-  track.appendChild(buildSet()); track.appendChild(buildSet());
+  if(track){ track.appendChild(buildSet()); track.appendChild(buildSet()); }
 
   /* reveal on scroll */
   var io = new IntersectionObserver(function(entries){
@@ -52,13 +52,15 @@ import Lenis from "lenis";
 
   /* gallery lightbox */
   var lb = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg");
-  document.querySelectorAll("#galleryGrid img").forEach(function(img){
-    img.addEventListener("click", function(){ lbImg.src = img.currentSrc || img.src; lb.classList.add("open"); });
-  });
-  function closeLb(){ lb.classList.remove("open"); lbImg.src = ""; }
-  document.getElementById("lbX").addEventListener("click", closeLb);
-  lb.addEventListener("click", function(e){ if(e.target === lb) closeLb(); });
-  window.addEventListener("keydown", function(e){ if(e.key === "Escape") closeLb(); });
+  if(lb && lbImg){
+    document.querySelectorAll("#galleryGrid img").forEach(function(img){
+      img.addEventListener("click", function(){ lbImg.src = img.currentSrc || img.src; lb.classList.add("open"); });
+    });
+    var closeLb = function(){ lb.classList.remove("open"); lbImg.src = ""; };
+    document.getElementById("lbX").addEventListener("click", closeLb);
+    lb.addEventListener("click", function(e){ if(e.target === lb) closeLb(); });
+    window.addEventListener("keydown", function(e){ if(e.key === "Escape") closeLb(); });
+  }
 
   /* gallery masonry: balanced columns on desktop/tablet, CSS slider on mobile */
   var gGrid = document.getElementById("galleryGrid");
@@ -103,6 +105,7 @@ import Lenis from "lenis";
   var poster = document.getElementById("heroPoster");
   var content = document.getElementById("heroContent");
   var hint = document.getElementById("scrollHint");
+  if(hero && canvas && video && content && hint){
   var ctx = canvas.getContext("2d");
 
   var frames = [], usingBuffer = false, lastIdx = -1, posterHidden = false;
@@ -228,4 +231,5 @@ import Lenis from "lenis";
       requestAnimationFrame(render);
     })();
   }
+  } /* end hero guard */
 })();
