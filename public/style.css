@@ -23,7 +23,7 @@ body {
   font-family: var(--font-body);
   font-size: 18px;
   color: var(--gold);
-  background: var(--white);
+  background: var(--cream-muted);
   line-height: 1.6;
 }
 img { max-width: 100%; display: block; }
@@ -336,7 +336,7 @@ ul { list-style: none; }
 
 /* ===== PRICING ===== */
 .pricing-section {
-  background: var(--cream-light);
+  background: var(--cream-muted);
   padding: 5rem 2rem;
 }
 .pricing-header {
@@ -500,7 +500,7 @@ ul { list-style: none; }
   filter: brightness(0.65);
 }
 .cta-text-block {
-  background: var(--cream);
+  background: var(--cream-muted);
   padding: 4rem 3rem;
   display: flex;
   flex-direction: column;
@@ -677,7 +677,7 @@ ul { list-style: none; }
 
 /* ===== ABOUT PAGE ===== */
 .about-section {
-  background: var(--cream);
+  background: var(--cream-muted);
   padding: 5rem 2rem;
 }
 .about-grid {
@@ -723,7 +723,7 @@ ul { list-style: none; }
 
 /* ===== GALLERY PAGE ===== */
 .gallery-page-section {
-  background: var(--cream);
+  background: var(--cream-muted);
   padding: 5rem 2rem;
 }
 .gallery-grid {
@@ -776,7 +776,7 @@ ul { list-style: none; }
 
 /* ===== SERVICES SECTION (gallery page) ===== */
 .services-section {
-  background: var(--cream);
+  background: var(--cream-muted);
   padding: 5rem 2rem;
 }
 .services-header {
@@ -895,7 +895,7 @@ ul { list-style: none; }
 
 /* ===== CONTACT PAGE ===== */
 .contact-section {
-  background: var(--cream);
+  background: var(--cream-muted);
   padding: 5rem 2rem;
 }
 .contact-grid {
