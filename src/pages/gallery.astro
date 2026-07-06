@@ -3,15 +3,17 @@ import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="Gallery - Eli's Barbershop Toronto" description="Browse our gallery of haircuts and styles at Eli's Barbershop Toronto." active="gallery">
   <section class="page-hero">
-    <div class="hero-slideshow" aria-hidden="true">
-      <div class="hero-slide" style="background-image:url('/hero-slides/slide-1.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('/hero-slides/slide-2.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('/hero-slides/slide-3.jpg')"></div>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Our Gallery</h1>
-      <div class="hero-divider"><span></span><span class="scissors">✂</span><span></span></div>
+    <div class="page-hero-inner">
+      <div class="hero-slideshow" aria-hidden="true">
+        <div class="hero-slide" style="background-image:url('/hero-slides/slide-1.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('/hero-slides/slide-2.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('/hero-slides/slide-3.jpg')"></div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Our Gallery</h1>
+        <div class="hero-divider"><span></span><span class="scissors">✂</span><span></span></div>
+      </div>
     </div>
   </section>
   <section class="gallery-page-section">

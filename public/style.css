@@ -635,13 +635,20 @@ ul { list-style: none; }
 
 /* ===== PAGE HERO (inner pages) ===== */
 .page-hero {
+  background: var(--navy);
+  padding: 5rem 3rem 6rem;
+  border-top: 1px solid rgba(250, 246, 227, 0.5);
+  border-bottom: 1px solid rgba(250, 246, 227, 0.5);
+}
+.page-hero-inner {
   position: relative;
   min-height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--navy);
+  max-width: 1800px;
+  margin: 0 auto;
 }
 .hero-slideshow {
   position: absolute;
