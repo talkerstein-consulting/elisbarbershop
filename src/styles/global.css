@@ -53,10 +53,10 @@
   .btn .arw{transition:transform .3s var(--ease)}
   .btn:hover .arw{transform:translateX(4px)}
   .btn--amber{
-    background:linear-gradient(180deg,var(--amber-bright),var(--amber-deep));color:#1f2645;
-    border-color:transparent;font-weight:700;box-shadow:0 8px 24px -12px rgba(181,159,120,.55);
+    background:#D8DBBD;color:#1f2645;
+    border-color:transparent;font-weight:700;box-shadow:0 8px 24px -12px rgba(216,219,189,.55);
   }
-  .btn--amber:hover{color:#182038;transform:translateY(-1px)}
+  .btn--amber:hover{color:#182038;background:#e2e5c9;transform:translateY(-1px)}
   .btn--block{width:100%;justify-content:center;padding:16px}
 
   /* notice bar */
