@@ -29,6 +29,26 @@ import Lenis from "lenis";
   }
   onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
 
+  /* mobile hamburger menu */
+  var burger = document.getElementById("navBurger");
+  var mobileMenu = document.getElementById("mobileMenu");
+  if(burger && mobileMenu){
+    function setMenu(open){
+      mobileMenu.classList.toggle("open", open);
+      burger.classList.toggle("open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      document.documentElement.style.overflow = open ? "hidden" : "";
+    }
+    burger.addEventListener("click", function(){ setMenu(!mobileMenu.classList.contains("open")); });
+    mobileMenu.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", function(){ setMenu(false); });
+    });
+    window.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && mobileMenu.classList.contains("open")) setMenu(false);
+    });
+  }
+
   /* marquee */
   var items = ["Gents Haircut","Beard Trim","Kids' Cuts","Line-ups","Salon Services","Walk-ins Welcome","Since 2017"];
   var track = document.getElementById("marquee");
