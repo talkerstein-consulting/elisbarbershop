@@ -120,7 +120,8 @@
   .mobile-menu.open{opacity:1;visibility:visible}
   .mobile-menu a{font-family:"Bebas Neue",sans-serif;font-size:36px;letter-spacing:.05em;color:var(--text)}
   .mobile-menu a:hover{color:var(--amber)}
-  .mobile-menu a.btn{font-family:"Roboto",sans-serif;font-size:15px;margin-top:10px}
+  .mobile-menu a.btn{font-family:"Roboto",sans-serif;font-size:15px;margin-top:10px;color:#1f2645}
+  .mobile-menu a.btn:hover{color:#182038}
   @media(max-width:820px){ .nav-links a.link{display:none} .nav-cta .label-long{display:none} .nav-burger{display:flex} }
 
   /* standalone sub-pages: clear the fixed nav */
