@@ -88,10 +88,10 @@
     border-bottom:1px solid var(--line);padding-block:12px;
   }
   .brand{display:flex;align-items:center;gap:10px}
-  .brand img{height:42px;width:auto}
+  .brand img{height:58px;width:auto}
   .nav-links{display:flex;align-items:center;gap:30px}
   .nav-links a.link{
-    font-family:"Roboto",sans-serif;font-size:13px;color:var(--muted);
+    font-family:"Roboto",sans-serif;font-size:16px;color:var(--muted);
     letter-spacing:.02em;transition:color .25s var(--ease);position:relative;
   }
   .nav-links a.link:hover{color:#fff}
@@ -123,7 +123,7 @@
     position:absolute;z-index:2;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:0 var(--pad);max-width:1180px;margin:0 auto;left:0;right:0;will-change:opacity,transform;
   }
-  .hero h1{font-size:clamp(30px,5.4vw,62px);color:#fff;line-height:1.14;letter-spacing:-.02em;text-shadow:0 2px 40px rgba(0,0,0,.45)}
+  .hero h1{font-size:clamp(40px,7.2vw,88px);color:#fff;line-height:1.1;letter-spacing:-.02em;text-shadow:0 2px 40px rgba(0,0,0,.45)}
   .hero h1 .amber{color:var(--amber)}
   .scroll-ind{
     position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:3;cursor:pointer;
