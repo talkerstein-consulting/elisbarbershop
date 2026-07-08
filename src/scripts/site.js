@@ -11,42 +11,6 @@ import Lenis from "lenis";
     (function lenisRaf(time){ lenis.raf(time); requestAnimationFrame(lenisRaf); })(0);
   }
 
-  /* footer curtain reveal: keep --footer-h in sync so the last section's
-     negative margin exactly matches the pinned footer's real height */
-  var footerEl = document.querySelector("footer");
-  if(footerEl){
-    var setFooterH = function(){
-      document.documentElement.style.setProperty("--footer-h", footerEl.offsetHeight + "px");
-    };
-    setFooterH();
-    if(window.ResizeObserver){ new ResizeObserver(setFooterH).observe(footerEl); }
-    else{ window.addEventListener("resize", setFooterH); }
-
-    // reactive card-reveal: the top card stays full-size (never smaller than
-    // the footer sitting behind it) and gets pulled up and away, faster than
-    // normal scroll, during the last footerHeight px — fully uncovering the
-    // footer card underneath instead of just clipping its corners.
-    var curtain = document.querySelector(".curtain-edge");
-    if(curtain && !reduceMotion){
-      var cardTicking = false;
-      function renderCardReveal(){
-        cardTicking = false;
-        var fh = footerEl.offsetHeight || 1;
-        var footerTop = footerEl.getBoundingClientRect().top;
-        var p = (window.innerHeight - footerTop) / fh;
-        p = Math.min(1, Math.max(0, p));
-        curtain.style.transform = "translateY(" + (-fh * p).toFixed(1) + "px)";
-        curtain.style.boxShadow = "0 " + (24 + 24 * p).toFixed(0) + "px " + (48 + 32 * p).toFixed(0) + "px -16px rgba(0,0,0," + (0.48 + 0.16 * p).toFixed(2) + ")";
-      }
-      function onCardScroll(){
-        if(!cardTicking){ cardTicking = true; requestAnimationFrame(renderCardReveal); }
-      }
-      renderCardReveal();
-      window.addEventListener("scroll", onCardScroll, {passive:true});
-      window.addEventListener("resize", onCardScroll);
-    }
-  }
-
   /* notice bar: dismiss + auto-tuck on scroll */
   var notice = document.getElementById("notice");
   function hideNotice(){ notice.classList.add("hide"); document.body.classList.add("notice-off"); }
