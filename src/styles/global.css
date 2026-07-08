@@ -15,6 +15,7 @@
     --pad:clamp(20px,5vw,64px);
     --ease:cubic-bezier(.22,.61,.36,1);
     --notice-h:42px;
+    --footer-underlap:72px;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -370,7 +371,8 @@
   /* footer — pinned behind the page; it reveals from underneath the final section */
   footer{
     position:sticky;bottom:0;z-index:1;
-    background:var(--ink-deep,#1c2447);padding:64px var(--pad) 34px;
+    margin-top:calc(-1 * var(--footer-underlap));
+    background:var(--ink-deep,#1c2447);padding:calc(64px + var(--footer-underlap)) var(--pad) 34px;
   }
   .foot-logo-row{display:flex;justify-content:center;max-width:var(--maxw);margin:0 auto 48px}
   .foot-logo{height:100px;width:auto}
