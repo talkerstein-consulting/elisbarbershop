@@ -460,6 +460,8 @@
     .foot-visit-row{text-align:left}
     .foot-social-col{justify-items:center}
     .google-badge{margin-inline:auto}
+    .foot-bottom{justify-content:center;text-align:center}
+    .foot-bottom .tk{justify-content:center}
   }
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
