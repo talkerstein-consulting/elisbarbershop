@@ -6,8 +6,10 @@ import Footer from "../components/Footer.astro";
 ---
 <BaseLayout title="Pricing — Eli's Barbershop Toronto" description="Simple, honest pricing at Eli's Barbershop Toronto: gents haircuts $25, beard trims $10. Prices inclusive of taxes.">
   <Nav />
-  <main class="page-main">
-    <Pricing />
-  </main>
-  <Footer />
+  <div class="reveal-stage">
+    <main class="page-main">
+      <Pricing last />
+    </main>
+    <Footer />
+  </div>
 </BaseLayout>

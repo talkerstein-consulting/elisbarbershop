@@ -1,6 +1,7 @@
 ---
+const { last = false } = Astro.props;
 ---
-<section class="block" id="pricing">
+<section class:list={["block", "light", { "curtain-edge": last }]} id="pricing">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Our Pricing</span>

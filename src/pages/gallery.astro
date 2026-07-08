@@ -7,9 +7,11 @@ import Lightbox from "../components/Lightbox.astro";
 ---
 <BaseLayout title="Gallery — Eli's Barbershop Toronto" description="Browse photos of cuts and the shop at Eli's Barbershop, 4128 Bathurst St, Toronto.">
   <Nav />
-  <main class="page-main">
-    <Gallery />
-  </main>
-  <Footer />
+  <div class="reveal-stage">
+    <main class="page-main">
+      <Gallery last />
+    </main>
+    <Footer />
+  </div>
   <Lightbox />
 </BaseLayout>

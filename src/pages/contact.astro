@@ -6,8 +6,10 @@ import Footer from "../components/Footer.astro";
 ---
 <BaseLayout title="Contact Us — Eli's Barbershop Toronto" description="Contact Eli's Barbershop: (416) 224-2877, 4128 Bathurst St, Toronto, ON M3H 3P4. Open Sun 8-5, Mon-Thu 8-7, Fri 8-5. Shomer Shabbat.">
   <Nav />
-  <main class="page-main">
-    <Contact />
-  </main>
-  <Footer />
+  <div class="reveal-stage">
+    <main class="page-main">
+      <Contact last />
+    </main>
+    <Footer />
+  </div>
 </BaseLayout>

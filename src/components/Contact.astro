@@ -1,26 +1,43 @@
 ---
+const { last = false } = Astro.props;
 ---
-<section class="block contact" id="contact">
-  <div class="wrap contact-grid">
-    <div class="reveal">
-      <span class="eyebrow">Get In Touch</span>
-      <h2 class="display">Drop by the chair.</h2>
-      <p class="lead">Right in the neighbourhood on Bathurst St, Eli's is ready for whatever you need — a cut, a trim, or a quick question about booking. Reach out any time.</p>
-      <div class="call">Call us <a href="tel:+14162242877">(416)&nbsp;224-2877</a></div>
-      <div class="meta">
-        <div><div class="lbl">Find us</div><div class="val">4128 Bathurst St, Toronto, ON M3H 3P4</div></div>
-        <div><div class="lbl">Hours</div><div class="val">
-          <span>Sun · 8 AM – 5 PM</span>
-          <span>Mon – Thu · 8 AM – 7 PM</span>
-          <span>Fri · 8 AM – 5 PM</span>
-          <span>Sat · Closed (Shomer Shabbat)</span>
-        </div></div>
+<section class:list={["block", "contact", { "curtain-edge": last }]} id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal c-info">
+        <span class="eyebrow">Get In Touch</span>
+        <h2 class="display">Drop by the chair.</h2>
+        <p class="lead">Right in the neighbourhood on Bathurst St, Eli's is ready for whatever you need — a cut, a trim, or a quick question about booking. Reach out any time.</p>
+        <div class="call">Call us <a href="tel:+14162242877">(416)&nbsp;224-2877</a></div>
       </div>
-    </div>
-    <div class="reveal d1">
-      <div class="map">
-        <iframe title="Map to Eli's Barbershop" loading="lazy"
-          src="https://maps.google.com/maps?q=4128+Bathurst+St+Toronto+ON+M3H+3P4&t=m&z=15&output=embed&iwloc=near"></iframe>
+
+      <div class="hours-card reveal d1 c-hours" id="hoursCard">
+        <div class="hours-head">
+          <h3 class="hours-title">Store Hours</h3>
+          <div class="hours-status" id="hoursStatus" role="status">
+            <span class="dot"></span><span class="txt">Checking hours…</span>
+          </div>
+        </div>
+        <a class="hours-addr" href="https://www.google.com/maps/place/Eli+Barbershop/@43.7467809,-79.4366341,17z/data=!4m15!1m8!3m7!1s0x882b326f80757b49:0x81f62f3c23688cef!2s4128+Bathurst+St,+North+York,+ON+M3H+3P4,+Canada!3b1!8m2!3d43.7467809!4d-79.4366341!16s%2Fg%2F11rgfz7b90!3m5!1s0x882b326f8074fa53:0x54f68ba324015c98!8m2!3d43.7467825!4d-79.4366455!16s%2Fg%2F11f30cr5xf?entry=ttu&g_ep=EgoyMDI2MDcwNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+          4128 Bathurst St, Toronto, ON M3H 3P4
+        </a>
+        <ul class="hours-list" id="hoursList">
+          <li data-day="0"><span class="d">Sunday</span><span class="badge"></span><span class="t">8 AM – 5 PM</span></li>
+          <li data-day="1"><span class="d">Monday</span><span class="badge"></span><span class="t">8 AM – 7 PM</span></li>
+          <li data-day="2"><span class="d">Tuesday</span><span class="badge"></span><span class="t">8 AM – 7 PM</span></li>
+          <li data-day="3"><span class="d">Wednesday</span><span class="badge"></span><span class="t">8 AM – 7 PM</span></li>
+          <li data-day="4"><span class="d">Thursday</span><span class="badge"></span><span class="t">8 AM – 7 PM</span></li>
+          <li data-day="5"><span class="d">Friday</span><span class="badge"></span><span class="t">8 AM – 5 PM</span></li>
+          <li data-day="6"><span class="d">Saturday</span><span class="badge"></span><span class="t">Closed · Shomer Shabbat</span></li>
+        </ul>
+      </div>
+
+      <div class="reveal d2 c-map">
+        <div class="map">
+          <iframe title="Map to Eli's Barbershop" loading="lazy"
+            src="https://maps.google.com/maps?cid=6122234276256767128&t=m&z=16&output=embed&iwloc=near"></iframe>
+        </div>
       </div>
     </div>
   </div>

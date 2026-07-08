@@ -11,6 +11,42 @@ import Lenis from "lenis";
     (function lenisRaf(time){ lenis.raf(time); requestAnimationFrame(lenisRaf); })(0);
   }
 
+  /* footer curtain reveal: keep --footer-h in sync so the last section's
+     negative margin exactly matches the pinned footer's real height */
+  var footerEl = document.querySelector("footer");
+  if(footerEl){
+    var setFooterH = function(){
+      document.documentElement.style.setProperty("--footer-h", footerEl.offsetHeight + "px");
+    };
+    setFooterH();
+    if(window.ResizeObserver){ new ResizeObserver(setFooterH).observe(footerEl); }
+    else{ window.addEventListener("resize", setFooterH); }
+
+    // reactive card-reveal: the top card stays full-size (never smaller than
+    // the footer sitting behind it) and gets pulled up and away, faster than
+    // normal scroll, during the last footerHeight px — fully uncovering the
+    // footer card underneath instead of just clipping its corners.
+    var curtain = document.querySelector(".curtain-edge");
+    if(curtain && !reduceMotion){
+      var cardTicking = false;
+      function renderCardReveal(){
+        cardTicking = false;
+        var fh = footerEl.offsetHeight || 1;
+        var footerTop = footerEl.getBoundingClientRect().top;
+        var p = (window.innerHeight - footerTop) / fh;
+        p = Math.min(1, Math.max(0, p));
+        curtain.style.transform = "translateY(" + (-fh * p).toFixed(1) + "px)";
+        curtain.style.boxShadow = "0 " + (24 + 24 * p).toFixed(0) + "px " + (48 + 32 * p).toFixed(0) + "px -16px rgba(0,0,0," + (0.48 + 0.16 * p).toFixed(2) + ")";
+      }
+      function onCardScroll(){
+        if(!cardTicking){ cardTicking = true; requestAnimationFrame(renderCardReveal); }
+      }
+      renderCardReveal();
+      window.addEventListener("scroll", onCardScroll, {passive:true});
+      window.addEventListener("resize", onCardScroll);
+    }
+  }
+
   /* notice bar: dismiss + auto-tuck on scroll */
   var notice = document.getElementById("notice");
   function hideNotice(){ notice.classList.add("hide"); document.body.classList.add("notice-off"); }
@@ -49,20 +85,127 @@ import Lenis from "lenis";
     });
   }
 
-  /* marquee */
-  var items = ["Gents Haircut","Beard Trim","Kids' Cuts","Line-ups","Salon Services","Walk-ins Welcome","Since 2017"];
-  var track = document.getElementById("marquee");
-  function buildSet(){
-    var frag = document.createDocumentFragment();
-    items.forEach(function(t){
-      var s = document.createElement("span");
-      s.className = "marquee-item";
-      s.innerHTML = t + '<span class="sep">✦</span>';
-      frag.appendChild(s);
-    });
-    return frag;
+  /* nav scroll-spy: sliding pill tracks the active section (or the current standalone page) */
+  var navLinksEl = document.getElementById("navLinks");
+  var navIndicator = document.getElementById("navIndicator");
+  if(navLinksEl && navIndicator){
+    var spyLinks = Array.prototype.slice.call(navLinksEl.querySelectorAll("a.link[data-key]"));
+    var spyActiveKey = null;
+
+    function moveIndicatorTo(link){
+      if(!link){ navIndicator.style.opacity = "0"; return; }
+      var lr = link.getBoundingClientRect(), cr = navLinksEl.getBoundingClientRect();
+      navIndicator.style.width = lr.width + "px";
+      navIndicator.style.transform = "translateY(-50%) translateX(" + (lr.left - cr.left) + "px)";
+      navIndicator.style.opacity = "1";
+    }
+    function setActiveKey(key){
+      spyActiveKey = key;
+      spyLinks.forEach(function(a){ a.classList.toggle("is-active", a.getAttribute("data-key") === key); });
+      moveIndicatorTo(spyLinks.filter(function(a){ return a.getAttribute("data-key") === key; })[0]);
+    }
+
+    var currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    var pageKey = null;
+    spyLinks.forEach(function(a){ if(a.getAttribute("href") === currentPath) pageKey = a.getAttribute("data-key"); });
+
+    if(pageKey){
+      // standalone page (e.g. /about): the nav link for this page just stays active
+      setActiveKey(pageKey);
+      window.addEventListener("resize", function(){ setActiveKey(pageKey); });
+    } else {
+      // homepage: highlight whichever section is crossing the upper third of the viewport
+      var spySections = spyLinks
+        .map(function(a){ return {key:a.getAttribute("data-key"), el:document.getElementById(a.getAttribute("data-key"))}; })
+        .filter(function(s){ return s.el; });
+      if(spySections.length){
+        function onSpyScroll(){
+          var probe = window.innerHeight * 0.35;
+          var found = null;
+          spySections.forEach(function(s){
+            var r = s.el.getBoundingClientRect();
+            if(r.top <= probe && r.bottom > probe) found = s.key;
+          });
+          if(found !== spyActiveKey) setActiveKey(found);
+        }
+        onSpyScroll();
+        window.addEventListener("scroll", onSpyScroll, {passive:true});
+        window.addEventListener("resize", onSpyScroll);
+      }
+    }
   }
-  if(track){ track.appendChild(buildSet()); track.appendChild(buildSet()); }
+
+  /* marquee — seamless measured loop, ported from React Bits' LogoLoop animation core */
+  var mqOuter = document.querySelector(".marquee");
+  var mqTrack = document.getElementById("marquee");
+  if(mqOuter && mqTrack){
+    var MQ_ITEMS = ["Gents Haircut","Beard Trim","Kids' Cuts","Line-ups","Salon Services","Walk-ins Welcome","Since 2017"];
+    var MQ_SPEED = 46;       // px/s, cruising speed
+    var MQ_HOVER_SPEED = 14; // px/s, decelerated (not a hard stop) on hover
+    var MQ_TAU = 0.25;       // smoothing time-constant for the easing, matches LogoLoop's SMOOTH_TAU
+    var MQ_MIN_COPIES = 2, MQ_COPY_HEADROOM = 2;
+
+    var mqCopyCount = MQ_MIN_COPIES, mqSeqWidth = 0;
+    var mqOffset = 0, mqVelocity = 0, mqLastTs = null, mqHovered = false, mqRaf = null;
+
+    function buildSequence(){
+      var seq = document.createElement("div");
+      seq.className = "marquee-seq";
+      MQ_ITEMS.forEach(function(t){
+        var s = document.createElement("span");
+        s.className = "marquee-item";
+        s.innerHTML = t + '<span class="sep">✦</span>';
+        seq.appendChild(s);
+      });
+      return seq;
+    }
+    function mqRenderCopies(){
+      mqTrack.innerHTML = "";
+      for(var i=0;i<mqCopyCount;i++){
+        var seq = buildSequence();
+        if(i===0) seq.setAttribute("data-seq", "0");
+        mqTrack.appendChild(seq);
+      }
+    }
+    // measure one sequence's width and grow the copy count until it always fills + overlaps the viewport,
+    // so the modulo-wrapped translate below never reveals a gap regardless of container width
+    function mqMeasure(){
+      var seqEl = mqTrack.querySelector('[data-seq="0"]');
+      if(!seqEl) return;
+      var w = seqEl.getBoundingClientRect().width;
+      if(w <= 0) return;
+      mqSeqWidth = Math.ceil(w);
+      var needed = Math.ceil(mqOuter.clientWidth / mqSeqWidth) + MQ_COPY_HEADROOM;
+      var next = Math.max(MQ_MIN_COPIES, needed);
+      if(next !== mqCopyCount){ mqCopyCount = next; mqRenderCopies(); requestAnimationFrame(mqMeasure); }
+    }
+
+    mqRenderCopies();
+    requestAnimationFrame(mqMeasure);
+
+    if(window.ResizeObserver){ new ResizeObserver(mqMeasure).observe(mqOuter); }
+    else{ window.addEventListener("resize", mqMeasure); }
+
+    mqOuter.addEventListener("mouseenter", function(){ mqHovered = true; });
+    mqOuter.addEventListener("mouseleave", function(){ mqHovered = false; });
+
+    function mqAnimate(ts){
+      if(mqLastTs === null) mqLastTs = ts;
+      var dt = Math.max(0, ts - mqLastTs) / 1000;
+      mqLastTs = ts;
+      var target = mqHovered ? MQ_HOVER_SPEED : MQ_SPEED;
+      var ease = 1 - Math.exp(-dt / MQ_TAU);
+      mqVelocity += (target - mqVelocity) * ease;
+      if(mqSeqWidth > 0){
+        var next = mqOffset + mqVelocity * dt;
+        mqOffset = ((next % mqSeqWidth) + mqSeqWidth) % mqSeqWidth;
+        mqTrack.style.transform = "translate3d(" + (-mqOffset).toFixed(2) + "px,0,0)";
+      }
+      mqRaf = requestAnimationFrame(mqAnimate);
+    }
+    if(reduceMotion){ mqTrack.style.transform = "translate3d(0,0,0)"; }
+    else{ mqRaf = requestAnimationFrame(mqAnimate); }
+  }
 
   /* reveal on scroll */
   var io = new IntersectionObserver(function(entries){
@@ -252,4 +395,96 @@ import Lenis from "lenis";
     })();
   }
   } /* end hero guard */
+
+  /* ---- store hours: live 3-state status (America/Toronto) ---- */
+  var hoursList = document.getElementById("hoursList");
+  var hoursStatusEl = document.getElementById("hoursStatus");
+  if(hoursList && hoursStatusEl){
+    // index 0=Sun..6=Sat; null = closed all day
+    var SCHEDULE = [
+      {open:8*60, close:17*60},  // Sun
+      {open:8*60, close:19*60},  // Mon
+      {open:8*60, close:19*60},  // Tue
+      {open:8*60, close:19*60},  // Wed
+      {open:8*60, close:19*60},  // Thu
+      {open:8*60, close:17*60},  // Fri
+      null                       // Sat — Shomer Shabbat
+    ];
+    var DAY_NAMES = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+    function torontoNow(){
+      // reconstruct Toronto wall-clock fields regardless of visitor's device timezone
+      var parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Toronto", weekday:"short", hour:"numeric", minute:"numeric", hour12:false
+      }).formatToParts(new Date());
+      var map = {}; parts.forEach(function(p){ map[p.type] = p.value; });
+      var weekdayIdx = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(map.weekday);
+      var hour = parseInt(map.hour, 10) % 24;
+      var minute = parseInt(map.minute, 10);
+      return {day: weekdayIdx, minutes: hour*60 + minute};
+    }
+    function fmtClock(mins){
+      var h = Math.floor(mins/60), m = mins%60;
+      var ampm = h >= 12 ? "PM" : "AM";
+      var h12 = h % 12; if(h12 === 0) h12 = 12;
+      return h12 + (m ? ":" + (m<10?"0":"")+m : "") + " " + ampm;
+    }
+    function fmtDuration(mins){
+      var h = Math.floor(mins/60), m = mins%60;
+      if(h <= 0) return m + "m";
+      return h + "h" + (m ? " " + m + "m" : "");
+    }
+    function nextOpen(day, minutes){
+      // walk forward up to 7 days to find the next open slot after "now"
+      for(var i=0; i<=7; i++){
+        var d = (day+i) % 7;
+        var sched = SCHEDULE[d];
+        if(sched){
+          var startMin = (i===0) ? minutes : -1;
+          if(sched.open > startMin) return {daysAhead:i, openAt:sched.open};
+        }
+      }
+      return null;
+    }
+
+    function render(){
+      var now = torontoNow();
+      var today = SCHEDULE[now.day];
+      var isOpenNow = !!today && now.minutes >= today.open && now.minutes < today.close;
+
+      hoursList.querySelectorAll("li").forEach(function(li){
+        var d = parseInt(li.getAttribute("data-day"), 10);
+        li.classList.toggle("today", d === now.day);
+        li.classList.remove("is-open", "is-closed");
+        var badge = li.querySelector(".badge");
+        if(d === now.day){
+          li.classList.add(isOpenNow ? "is-open" : "is-closed");
+          if(badge) badge.textContent = isOpenNow ? "Open now" : "Closed";
+        } else if(badge){
+          badge.textContent = "";
+        }
+      });
+
+      hoursStatusEl.classList.remove("is-open", "is-closed");
+      var txt = hoursStatusEl.querySelector(".txt");
+      if(isOpenNow){
+        hoursStatusEl.classList.add("is-open");
+        txt.textContent = "Open now · closes at " + fmtClock(today.close);
+      } else {
+        hoursStatusEl.classList.add("is-closed");
+        if(now.day === 6){
+          txt.textContent = "Closed today · Shomer Shabbat";
+        } else if(today && now.minutes < today.open){
+          txt.textContent = "Closed · opens in " + fmtDuration(today.open - now.minutes);
+        } else {
+          var nxt = nextOpen(now.day, now.minutes);
+          if(!nxt){ txt.textContent = "Closed"; }
+          else if(nxt.daysAhead === 1){ txt.textContent = "Closed · opens tomorrow at " + fmtClock(nxt.openAt); }
+          else { txt.textContent = "Closed · opens " + DAY_NAMES[(now.day+nxt.daysAhead)%7] + " at " + fmtClock(nxt.openAt); }
+        }
+      }
+    }
+    render();
+    setInterval(render, 60000);
+  }
 })();
