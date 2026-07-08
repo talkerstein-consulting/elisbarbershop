@@ -380,21 +380,21 @@
   }
   .foot-logo-row{display:flex;justify-content:center;max-width:var(--maxw);margin:0 auto 48px}
   .foot-logo{height:100px;width:auto}
-  .foot-top{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px}
-  .foot-links{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+  .foot-top{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;justify-items:center}
+  .foot-links{display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
   .foot-links a{
     font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:27px;letter-spacing:.02em;
     color:var(--text);transition:color .25s var(--ease)
   }
   .foot-links a:hover{color:var(--amber)}
-  .foot-visit{display:flex;flex-direction:column;gap:18px;align-items:flex-start;text-align:left}
+  .foot-visit{display:flex;flex-direction:column;gap:18px;align-items:flex-start;text-align:left;justify-self:center}
   .foot-visit-row{display:flex;align-items:flex-start;gap:10px;color:var(--muted);font-size:15px;line-height:1.5}
   .foot-visit-row svg{flex:none;color:var(--amber);margin-top:3px}
   .foot-visit-row a{color:var(--muted);font-weight:600;transition:color .25s var(--ease)}
   .foot-visit-row a:hover{color:#fff}
 
   /* social + google reviews column: 1 column, 2 rows (social on top, badge below) */
-  .foot-social-col{display:grid;grid-template-rows:auto auto;gap:18px;align-content:start}
+  .foot-social-col{display:grid;grid-template-rows:auto auto;gap:18px;align-content:start;justify-items:center;justify-self:center}
   .social{display:flex;gap:14px}
   .social a{color:var(--muted);transition:color .25s var(--ease)}
   .social a:hover{color:var(--amber)}
