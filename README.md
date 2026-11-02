@@ -29,6 +29,13 @@ npm run preview       # preview the build
   - `media/` — site images (populated by `npm run fetch:media`)
 
 ## Notes
+
+- Hostinger production uses the `submain` branch as a PHP/HTML Git deployment,
+  copied directly into `public_html`; it does not run npm or a Node startup file.
+- Run `npm ci` and `npm run build` before publishing. The build copies `dist/`
+  into the repository root. Commit the generated route folders, `index.html`,
+  `_astro/`, `media/`, banner and logo alongside the source changes so Git
+  deployments contain a complete static website. Do not deploy raw source alone.
 - All site images now load from `/media/...` (local). The only remaining
   external element is the Google Maps embed in the contact section, which is a
   live map and stays remote by design.
